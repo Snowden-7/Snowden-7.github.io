@@ -12,21 +12,22 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.7;
+            color: #2d3748;
+            background-color: #f7fafc;
             min-height: 100vh;
         }
 
         /* Navigation */
         nav {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 1rem 0;
+            background: #ffffff;
+            padding: 1.2rem 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            border-bottom: 1px solid #e2e8f0;
         }
 
         nav ul {
@@ -34,178 +35,322 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         nav a {
             text-decoration: none;
-            color: #667eea;
-            font-weight: 600;
-            transition: color 0.3s ease;
+            color: #4a5568;
+            font-weight: 500;
+            font-size: 0.95rem;
+            letter-spacing: 0.3px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3182ce;
+            transition: width 0.3s ease;
         }
 
         nav a:hover {
-            color: #764ba2;
+            color: #3182ce;
+        }
+
+        nav a:hover::after {
+            width: 100%;
         }
 
         /* Header Section */
         .header {
-            text-align: center;
+            background: linear-gradient(135deg, #2b6cb0 0%, #2c5282 100%);
             color: white;
-            padding: 4rem 2rem;
+            padding: 5rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .header h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 1rem;
-            animation: fadeInDown 1s ease;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            animation: fadeInUp 0.8s ease;
         }
 
-        .header p {
-            font-size: 1.5rem;
-            animation: fadeInUp 1s ease;
+        .header .subtitle {
+            font-size: 1.4rem;
+            font-weight: 400;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.2s backwards;
+        }
+
+        .header .description {
+            font-size: 1.05rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.8;
+            animation: fadeInUp 0.8s ease 0.4s backwards;
         }
 
         /* Section Styling */
         section {
             background: white;
-            margin: 2rem auto;
-            padding: 3rem 2rem;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin: 3rem auto;
+            padding: 4rem 2rem;
             max-width: 1200px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
         }
 
         section h2 {
-            color: #667eea;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 0.5rem;
+            color: #1a202c;
+            margin-bottom: 0.75rem;
+            font-size: 2.25rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .section-subtitle {
+            color: #718096;
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+            font-weight: 400;
         }
 
         /* About Section */
         .about-content {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 2rem;
+            gap: 3rem;
         }
 
         .about-text {
-            line-height: 1.8;
-            font-size: 1.1rem;
-            color: #555;
+            line-height: 1.9;
+            font-size: 1.05rem;
+            color: #4a5568;
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .skills-section {
+            margin-top: 2.5rem;
+        }
+
+        .skills-section h3 {
+            color: #2d3748;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
         }
 
         .skills {
             display: flex;
             flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 0.75rem;
         }
 
         .skill-tag {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+            background: #edf2f7;
+            color: #2c5282;
+            padding: 0.6rem 1.2rem;
+            border-radius: 6px;
             font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: #3182ce;
+            color: white;
+            border-color: #3182ce;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(49, 130, 206, 0.2);
         }
 
         /* Projects Section */
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2rem;
             margin-top: 2rem;
         }
 
         .project-card {
-            border: 1px solid #ddd;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
             border-radius: 8px;
-            padding: 1.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #3182ce;
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
         }
 
         .project-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            border-color: #cbd5e0;
+        }
+
+        .project-card:hover::before {
+            transform: scaleY(1);
         }
 
         .project-card h3 {
-            color: #667eea;
+            color: #2d3748;
             margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 600;
         }
 
         .project-card p {
-            color: #666;
-            margin-bottom: 1rem;
+            color: #718096;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
         }
 
         .project-tech {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
+            gap: 0.6rem;
+            margin-top: 1.5rem;
         }
 
         .tech-badge {
-            background: #f0f0f0;
-            padding: 0.3rem 0.8rem;
-            border-radius: 15px;
+            background: #f7fafc;
+            color: #4a5568;
+            padding: 0.4rem 0.9rem;
+            border-radius: 4px;
             font-size: 0.85rem;
-            color: #555;
+            font-weight: 500;
+            border: 1px solid #e2e8f0;
+        }
+
+        .projects-note {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background: #f7fafc;
+            border-radius: 6px;
+            color: #718096;
+            font-style: italic;
+            border-left: 3px solid #3182ce;
         }
 
         /* Contact Section */
+        .contact-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .contact-text {
+            color: #4a5568;
+            font-size: 1.1rem;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
         .contact-links {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
-            margin-top: 2rem;
         }
 
         .contact-btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
             padding: 1rem 2rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #3182ce;
             color: white;
             text-decoration: none;
-            border-radius: 30px;
+            border-radius: 6px;
             font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 4px rgba(49, 130, 206, 0.2);
         }
 
         .contact-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+            background: #2c5282;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(49, 130, 206, 0.3);
+        }
+
+        .contact-btn.secondary {
+            background: #4a5568;
+        }
+
+        .contact-btn.secondary:hover {
+            background: #2d3748;
         }
 
         /* Footer */
         footer {
             text-align: center;
-            color: white;
-            padding: 2rem;
-            margin-top: 2rem;
+            color: #718096;
+            padding: 3rem 2rem;
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
         }
 
         /* Animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
@@ -216,23 +361,59 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .header h1 {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
 
-            .header p {
+            .header .subtitle {
                 font-size: 1.2rem;
+            }
+
+            .header .description {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+                margin: 2rem 1rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-links {
+                flex-direction: column;
+            }
+
+            .contact-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 3rem 1.5rem 3rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
             }
 
             nav ul {
                 gap: 1rem;
             }
 
-            section {
-                padding: 2rem 1rem;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
+            nav a {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -250,13 +431,20 @@
 
     <!-- Header -->
     <div class="header" id="home">
-        <h1>Segawa Abdul</h1>
-        <p>Software Developer & Creative Problem Solver</p>
+        <div class="header-content">
+            <h1>Segawa Abdul</h1>
+            <p class="subtitle">Software Developer & Creative Problem Solver</p>
+            <p class="description">
+                Building elegant solutions to complex problems. Passionate about creating 
+                impactful web experiences and writing clean, maintainable code.
+            </p>
+        </div>
     </div>
 
     <!-- About Section -->
     <section id="about">
         <h2>About Me</h2>
+        <p class="section-subtitle">Get to know me better</p>
         <div class="about-content">
             <div class="about-text">
                 <p>
@@ -265,18 +453,28 @@
                     foundation in web development and a keen eye for detail, I strive to build 
                     applications that are not only functional but also user-friendly and visually appealing.
                 </p>
-                <p style="margin-top: 1rem;">
+                <p>
                     I'm constantly learning and exploring new technologies to stay at the forefront 
                     of the ever-evolving tech landscape. I believe in writing clean, maintainable code 
-                    and following best practices to deliver high-quality projects.
+                    and following best practices to deliver high-quality projects that make a real difference.
                 </p>
+                <p>
+                    When I'm not coding, I enjoy collaborating with other developers, contributing to 
+                    open-source projects, and staying updated with the latest industry trends and innovations.
+                </p>
+            </div>
+            
+            <div class="skills-section">
+                <h3>Technical Skills</h3>
                 <div class="skills">
                     <span class="skill-tag">HTML & CSS</span>
                     <span class="skill-tag">JavaScript</span>
                     <span class="skill-tag">Python</span>
+                    <span class="skill-tag">React</span>
                     <span class="skill-tag">Web Development</span>
                     <span class="skill-tag">Problem Solving</span>
-                    <span class="skill-tag">Version Control</span>
+                    <span class="skill-tag">Git & Version Control</span>
+                    <span class="skill-tag">Responsive Design</span>
                 </div>
             </div>
         </div>
@@ -285,16 +483,19 @@
     <!-- Projects Section -->
     <section id="projects">
         <h2>My Projects</h2>
+        <p class="section-subtitle">A showcase of my recent work</p>
         <div class="projects-grid">
             <div class="project-card">
                 <h3>Portfolio Website</h3>
                 <p>
-                    A personal portfolio website built with modern HTML, CSS, and JavaScript. 
-                    Features responsive design and smooth animations to showcase my work and skills.
+                    A modern, responsive portfolio website built with semantic HTML and CSS. 
+                    Features a clean design with smooth animations, accessible navigation, 
+                    and optimized performance for all devices.
                 </p>
                 <div class="project-tech">
                     <span class="tech-badge">HTML5</span>
                     <span class="tech-badge">CSS3</span>
+                    <span class="tech-badge">Responsive Design</span>
                     <span class="tech-badge">GitHub Pages</span>
                 </div>
             </div>
@@ -303,53 +504,62 @@
                 <h3>Web Application</h3>
                 <p>
                     A dynamic web application demonstrating proficiency in front-end development 
-                    with interactive features and clean user interface design.
+                    with interactive features, state management, and clean user interface design 
+                    following modern best practices.
                 </p>
                 <div class="project-tech">
                     <span class="tech-badge">JavaScript</span>
                     <span class="tech-badge">CSS</span>
-                    <span class="tech-badge">Responsive Design</span>
+                    <span class="tech-badge">API Integration</span>
+                    <span class="tech-badge">UI/UX</span>
                 </div>
             </div>
 
             <div class="project-card">
                 <h3>Code Snippets Collection</h3>
                 <p>
-                    A curated collection of useful code snippets and utilities that I've developed 
-                    for various projects, available for reuse and reference.
+                    A curated collection of useful code snippets, utilities, and reusable components 
+                    that I've developed for various projects. Organized and documented for easy 
+                    reference and integration.
                 </p>
                 <div class="project-tech">
                     <span class="tech-badge">Python</span>
                     <span class="tech-badge">JavaScript</span>
                     <span class="tech-badge">Git</span>
+                    <span class="tech-badge">Documentation</span>
                 </div>
             </div>
         </div>
-        <p style="text-align: center; margin-top: 2rem; color: #666; font-style: italic;">
-            More projects coming soon! Check back regularly for updates.
-        </p>
+        <div class="projects-note">
+            <p>More exciting projects coming soon! Check back regularly for updates.</p>
+        </div>
     </section>
 
     <!-- Contact Section -->
     <section id="contact">
         <h2>Get In Touch</h2>
-        <p style="text-align: center; color: #666; margin-bottom: 2rem;">
-            I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
-        </p>
-        <div class="contact-links">
-            <a href="https://www.linkedin.com/in/segawa-abdul" class="contact-btn" target="_blank">
-                LinkedIn Profile
-            </a>
-            <a href="https://github.com/Snowden-7" class="contact-btn" target="_blank">
-                GitHub Profile
-            </a>
+        <p class="section-subtitle">Let's connect and collaborate</p>
+        <div class="contact-content">
+            <p class="contact-text">
+                I'm always open to discussing new projects, creative ideas, or opportunities 
+                to be part of your vision. Whether you have a question or just want to say hi, 
+                feel free to reach out!
+            </p>
+            <div class="contact-links">
+                <a href="https://www.linkedin.com/in/segawa-abdul" class="contact-btn" target="_blank">
+                    LinkedIn Profile
+                </a>
+                <a href="https://github.com/Snowden-7" class="contact-btn secondary" target="_blank">
+                    GitHub Profile
+                </a>
+            </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
         <p>&copy; 2025 Segawa Abdul. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;">Built with ❤️ using HTML & CSS</p>
+        <p>Built with passion using HTML & CSS</p>
     </footer>
 </body>
 </html>
