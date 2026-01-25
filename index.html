@@ -11,6 +11,10 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
             line-height: 1.7;
@@ -28,6 +32,18 @@
             z-index: 1000;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
             border-bottom: 1px solid #e2e8f0;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         nav ul {
@@ -75,6 +91,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            animation: fadeIn 1s ease;
         }
 
         .header::before {
@@ -86,6 +103,7 @@
             bottom: 0;
             background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
             opacity: 0.3;
+            animation: pulse 4s ease-in-out infinite;
         }
 
         .header-content {
@@ -127,6 +145,12 @@
             max-width: 1200px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
             border-radius: 8px;
+            animation: fadeInUp 0.6s ease;
+            transition: all 0.3s ease;
+        }
+
+        section:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         section h2 {
@@ -135,6 +159,7 @@
             font-size: 2.25rem;
             font-weight: 700;
             letter-spacing: -0.5px;
+            animation: slideInLeft 0.6s ease;
         }
 
         .section-subtitle {
@@ -142,6 +167,7 @@
             font-size: 1.1rem;
             margin-bottom: 3rem;
             font-weight: 400;
+            animation: slideInLeft 0.6s ease 0.2s backwards;
         }
 
         /* About Section */
@@ -189,15 +215,17 @@
             font-size: 0.9rem;
             font-weight: 500;
             border: 1px solid #e2e8f0;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            animation: fadeIn 0.5s ease;
         }
 
         .skill-tag:hover {
             background: #3182ce;
             color: white;
             border-color: #3182ce;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(49, 130, 206, 0.2);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 12px rgba(49, 130, 206, 0.3);
         }
 
         /* Projects Section */
@@ -213,9 +241,10 @@
             border: 1px solid #e2e8f0;
             border-radius: 8px;
             padding: 2rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            animation: scaleIn 0.5s ease;
         }
 
         .project-card::before {
@@ -225,15 +254,15 @@
             left: 0;
             width: 4px;
             height: 100%;
-            background: #3182ce;
+            background: linear-gradient(180deg, #3182ce 0%, #2c5282 100%);
             transform: scaleY(0);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            border-color: #cbd5e0;
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+            border-color: #3182ce;
         }
 
         .project-card:hover::before {
@@ -334,22 +363,45 @@
             border-radius: 6px;
             font-weight: 600;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 2px 4px rgba(49, 130, 206, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .contact-btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .contact-btn:hover {
             background: #2c5282;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(49, 130, 206, 0.3);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(49, 130, 206, 0.4);
         }
 
         .contact-btn.secondary {
             background: #4a5568;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .contact-btn.secondary:hover {
             background: #2d3748;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(74, 85, 104, 0.4);
         }
 
         /* Footer */
@@ -376,6 +428,46 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
             }
         }
 
@@ -454,10 +546,10 @@
     <div class="header" id="home">
         <div class="header-content">
             <h1>Segawa Abdul</h1>
-            <p class="subtitle">Software Developer & Creative Problem Solver</p>
+            <p class="subtitle">Software Developer & Cybersecurity Enthusiast</p>
             <p class="description">
                 Building elegant solutions to complex problems. Passionate about creating 
-                impactful web experiences and writing clean, maintainable code.
+                impactful web experiences, writing clean maintainable code, and exploring the world of cybersecurity.
             </p>
         </div>
     </div>
@@ -480,6 +572,12 @@
                     and following best practices to deliver high-quality projects that make a real difference.
                 </p>
                 <p>
+                    Beyond software development, I'm deeply interested in cybersecurity. I'm actively 
+                    learning about security best practices, vulnerability assessment, and ethical hacking. 
+                    This interest drives me to build more secure applications and understand the importance 
+                    of protecting systems and data in our increasingly connected world.
+                </p>
+                <p>
                     When I'm not coding, I enjoy collaborating with other developers, contributing to 
                     open-source projects, and staying updated with the latest industry trends and innovations.
                 </p>
@@ -496,6 +594,15 @@
                     <span class="skill-tag">Problem Solving</span>
                     <span class="skill-tag">Git & Version Control</span>
                     <span class="skill-tag">Responsive Design</span>
+                </div>
+                <h3 style="margin-top: 2rem;">Cybersecurity Interests</h3>
+                <div class="skills">
+                    <span class="skill-tag">Network Security</span>
+                    <span class="skill-tag">Ethical Hacking</span>
+                    <span class="skill-tag">Vulnerability Assessment</span>
+                    <span class="skill-tag">Security Best Practices</span>
+                    <span class="skill-tag">Penetration Testing</span>
+                    <span class="skill-tag">Security Tools</span>
                 </div>
             </div>
         </div>
