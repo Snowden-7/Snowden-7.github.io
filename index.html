@@ -38,6 +38,7 @@
                 radial-gradient(circle at 40% 20%, rgba(49, 130, 206, 0.03) 0%, transparent 50%);
             z-index: -1;
             animation: backgroundShift 20s ease-in-out infinite;
+            will-change: transform, opacity;
         }
 
         @keyframes backgroundShift {
@@ -168,7 +169,6 @@
         /* Section Styling */
         section {
             background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
             margin: 3rem auto;
             padding: 4rem 2rem;
             max-width: 1200px;
@@ -177,6 +177,13 @@
             animation: fadeInUp 0.6s ease;
             transition: all 0.3s ease;
             border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+            section {
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
         }
 
         section:hover {
