@@ -11,12 +11,45 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
             line-height: 1.7;
             color: #2d3748;
-            background-color: #f7fafc;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background-attachment: fixed;
             min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(49, 130, 206, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(44, 82, 130, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(49, 130, 206, 0.03) 0%, transparent 50%);
+            z-index: -1;
+            animation: backgroundShift 20s ease-in-out infinite;
+            will-change: transform, opacity;
+        }
+
+        @keyframes backgroundShift {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.8;
+                transform: scale(1.1);
+            }
         }
 
         /* Navigation */
@@ -28,6 +61,18 @@
             z-index: 1000;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
             border-bottom: 1px solid #e2e8f0;
+            animation: slideDown 0.5s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
         }
 
         nav ul {
@@ -75,6 +120,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
+            animation: fadeIn 1s ease;
         }
 
         .header::before {
@@ -86,6 +132,7 @@
             bottom: 0;
             background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
             opacity: 0.3;
+            animation: pulse 4s ease-in-out infinite;
         }
 
         .header-content {
@@ -121,12 +168,27 @@
 
         /* Section Styling */
         section {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             margin: 3rem auto;
             padding: 4rem 2rem;
             max-width: 1200px;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05), 0 8px 32px rgba(0, 0, 0, 0.03);
             border-radius: 8px;
+            animation: fadeInUp 0.6s ease;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        @supports (backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px)) {
+            section {
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
+        }
+
+        section:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 12px 40px rgba(0, 0, 0, 0.05);
+            transform: translateY(-2px);
         }
 
         section h2 {
@@ -135,6 +197,7 @@
             font-size: 2.25rem;
             font-weight: 700;
             letter-spacing: -0.5px;
+            animation: slideInLeft 0.6s ease;
         }
 
         .section-subtitle {
@@ -142,6 +205,7 @@
             font-size: 1.1rem;
             margin-bottom: 3rem;
             font-weight: 400;
+            animation: slideInLeft 0.6s ease 0.2s backwards;
         }
 
         /* About Section */
@@ -175,6 +239,10 @@
             font-weight: 600;
         }
 
+        .skills-section h3:not(:first-child) {
+            margin-top: 2rem;
+        }
+
         .skills {
             display: flex;
             flex-wrap: wrap;
@@ -189,15 +257,17 @@
             font-size: 0.9rem;
             font-weight: 500;
             border: 1px solid #e2e8f0;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            animation: fadeIn 0.5s ease;
         }
 
         .skill-tag:hover {
             background: #3182ce;
             color: white;
             border-color: #3182ce;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 6px rgba(49, 130, 206, 0.2);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 12px rgba(49, 130, 206, 0.3);
         }
 
         /* Projects Section */
@@ -213,9 +283,10 @@
             border: 1px solid #e2e8f0;
             border-radius: 8px;
             padding: 2rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
+            animation: scaleIn 0.5s ease;
         }
 
         .project-card::before {
@@ -225,15 +296,15 @@
             left: 0;
             width: 4px;
             height: 100%;
-            background: #3182ce;
+            background: linear-gradient(180deg, #3182ce 0%, #2c5282 100%);
             transform: scaleY(0);
-            transition: transform 0.3s ease;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            border-color: #cbd5e0;
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+            border-color: #3182ce;
         }
 
         .project-card:hover::before {
@@ -245,6 +316,16 @@
             margin-bottom: 1rem;
             font-size: 1.4rem;
             font-weight: 600;
+        }
+
+        .project-card h3 a {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .project-card h3 a:hover {
+            color: #3182ce;
         }
 
         .project-card p {
@@ -281,6 +362,17 @@
             border-left: 3px solid #3182ce;
         }
 
+        .projects-note a {
+            color: #3182ce;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .projects-note a:hover {
+            color: #2c5282;
+        }
+
         /* Contact Section */
         .contact-content {
             text-align: center;
@@ -313,22 +405,45 @@
             border-radius: 6px;
             font-weight: 600;
             font-size: 1rem;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 2px 4px rgba(49, 130, 206, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .contact-btn:hover::before {
+            width: 300px;
+            height: 300px;
         }
 
         .contact-btn:hover {
             background: #2c5282;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(49, 130, 206, 0.3);
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(49, 130, 206, 0.4);
         }
 
         .contact-btn.secondary {
             background: #4a5568;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .contact-btn.secondary:hover {
             background: #2d3748;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(74, 85, 104, 0.4);
         }
 
         /* Footer */
@@ -355,6 +470,46 @@
             to {
                 opacity: 1;
                 transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
             }
         }
 
@@ -433,10 +588,10 @@
     <div class="header" id="home">
         <div class="header-content">
             <h1>Segawa Abdul</h1>
-            <p class="subtitle">Software Developer & Creative Problem Solver</p>
+            <p class="subtitle">Software Developer & Cybersecurity Enthusiast</p>
             <p class="description">
                 Building elegant solutions to complex problems. Passionate about creating 
-                impactful web experiences and writing clean, maintainable code.
+                impactful web experiences, writing clean maintainable code, and exploring the world of cybersecurity.
             </p>
         </div>
     </div>
@@ -459,6 +614,12 @@
                     and following best practices to deliver high-quality projects that make a real difference.
                 </p>
                 <p>
+                    Beyond software development, I'm deeply interested in cybersecurity. I'm actively 
+                    learning about security best practices, vulnerability assessment, and ethical hacking. 
+                    This interest drives me to build more secure applications and understand the importance 
+                    of protecting systems and data in our increasingly connected world.
+                </p>
+                <p>
                     When I'm not coding, I enjoy collaborating with other developers, contributing to 
                     open-source projects, and staying updated with the latest industry trends and innovations.
                 </p>
@@ -476,6 +637,15 @@
                     <span class="skill-tag">Git & Version Control</span>
                     <span class="skill-tag">Responsive Design</span>
                 </div>
+                <h3>Cybersecurity Interests</h3>
+                <div class="skills">
+                    <span class="skill-tag">Network Security</span>
+                    <span class="skill-tag">Ethical Hacking</span>
+                    <span class="skill-tag">Vulnerability Assessment</span>
+                    <span class="skill-tag">Security Best Practices</span>
+                    <span class="skill-tag">Penetration Testing</span>
+                    <span class="skill-tag">Security Tools</span>
+                </div>
             </div>
         </div>
     </section>
@@ -486,52 +656,93 @@
         <p class="section-subtitle">A showcase of my recent work</p>
         <div class="projects-grid">
             <div class="project-card">
-                <h3>Portfolio Website</h3>
+                <h3><a href="https://github.com/Snowden-7/Convertors" target="_blank">Convertors</a></h3>
                 <p>
-                    A modern, responsive portfolio website built with semantic HTML and CSS. 
-                    Features a clean design with smooth animations, accessible navigation, 
-                    and optimized performance for all devices.
-                </p>
-                <div class="project-tech">
-                    <span class="tech-badge">HTML5</span>
-                    <span class="tech-badge">CSS3</span>
-                    <span class="tech-badge">Responsive Design</span>
-                    <span class="tech-badge">GitHub Pages</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h3>Web Application</h3>
-                <p>
-                    A dynamic web application demonstrating proficiency in front-end development 
-                    with interactive features, state management, and clean user interface design 
-                    following modern best practices.
-                </p>
-                <div class="project-tech">
-                    <span class="tech-badge">JavaScript</span>
-                    <span class="tech-badge">CSS</span>
-                    <span class="tech-badge">API Integration</span>
-                    <span class="tech-badge">UI/UX</span>
-                </div>
-            </div>
-
-            <div class="project-card">
-                <h3>Code Snippets Collection</h3>
-                <p>
-                    A curated collection of useful code snippets, utilities, and reusable components 
-                    that I've developed for various projects. Organized and documented for easy 
-                    reference and integration.
+                    A Python toolkit for converting, extracting, encrypting, and processing PDF files. 
+                    Features include PDF to CSV/Excel (with OCR), Word, PowerPoint, images, and text conversion. 
+                    Includes an OCR pipeline for scanned documents.
                 </p>
                 <div class="project-tech">
                     <span class="tech-badge">Python</span>
-                    <span class="tech-badge">JavaScript</span>
-                    <span class="tech-badge">Git</span>
-                    <span class="tech-badge">Documentation</span>
+                    <span class="tech-badge">OCR</span>
+                    <span class="tech-badge">PDF Processing</span>
+                    <span class="tech-badge">Data Extraction</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3><a href="https://github.com/Snowden-7/M0b_s3c" target="_blank">M0b_s3c</a></h3>
+                <p>
+                    Mobile Security in action - A comprehensive project focused on mobile security 
+                    practices, vulnerability assessment, and security testing frameworks for mobile applications.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-badge">Mobile Security</span>
+                    <span class="tech-badge">Security Testing</span>
+                    <span class="tech-badge">Penetration Testing</span>
+                    <span class="tech-badge">Vulnerability Assessment</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3><a href="https://github.com/Snowden-7/Python_Reloaded" target="_blank">Python Reloaded</a></h3>
+                <p>
+                    Exercising Python in everything - A comprehensive collection of Python projects, 
+                    exercises, and demonstrations showcasing Python programming skills across various domains 
+                    and use cases.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Automation</span>
+                    <span class="tech-badge">Scripting</span>
+                    <span class="tech-badge">Best Practices</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3><a href="https://github.com/Snowden-7/ecomerce" target="_blank">E-commerce Platform</a></h3>
+                <p>
+                    An e-commerce site currently in progress, featuring modern web development practices, 
+                    user authentication, product management, and shopping cart functionality.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-badge">Web Development</span>
+                    <span class="tech-badge">E-commerce</span>
+                    <span class="tech-badge">Full Stack</span>
+                    <span class="tech-badge">User Management</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3><a href="https://github.com/Snowden-7/6N53" target="_blank">Network Simulator</a></h3>
+                <p>
+                    Network simulation project using GNS3 - Demonstrates network architecture, routing protocols, 
+                    and network topology design for learning and testing network configurations.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-badge">GNS3</span>
+                    <span class="tech-badge">Networking</span>
+                    <span class="tech-badge">Network Design</span>
+                    <span class="tech-badge">Routing</span>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <h3><a href="https://github.com/Snowden-7/project-python" target="_blank">Python Automation</a></h3>
+                <p>
+                    Python automated projects - The way to go for automation. Collection of automation scripts 
+                    and tools built with Python for various tasks and workflows.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Automation</span>
+                    <span class="tech-badge">Scripting</span>
+                    <span class="tech-badge">Workflows</span>
                 </div>
             </div>
         </div>
         <div class="projects-note">
-            <p>More exciting projects coming soon! Check back regularly for updates.</p>
+            <p>More exciting projects on my <a href="https://github.com/Snowden-7?tab=repositories" target="_blank">GitHub profile</a>! Check back regularly for updates.</p>
         </div>
     </section>
 
@@ -546,7 +757,7 @@
                 feel free to reach out!
             </p>
             <div class="contact-links">
-                <a href="https://www.linkedin.com/in/segawa-abdul" class="contact-btn" target="_blank">
+                <a href="https://www.linkedin.com/in/segawa-abdul-b7041b2b7" class="contact-btn" target="_blank">
                     LinkedIn Profile
                 </a>
                 <a href="https://github.com/Snowden-7" class="contact-btn secondary" target="_blank">
