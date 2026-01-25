@@ -58,4 +58,4 @@ The website uses a purple gradient theme. To change colors:
 - GitHub Pages
 
 ## 📝 License
-© 2026 Segawa Abdul. All rights reserved.
+© 2025 Segawa Abdul. All rights reserved.
