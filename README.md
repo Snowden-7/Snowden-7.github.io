@@ -51,7 +51,9 @@ The website uses a purple gradient theme. To change colors:
 1. Find the CSS `<style>` section in `index.html`
 2. Update the gradient colors in `background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);`
 3. Modify other color values like `#667eea` and `#764ba2` throughout the CSS
-
+```html
+<div>  https://app.letsdefend.io/my-rewards/detail/255df242337c4570925db53037ad1984
+```
 ## 🛠️ Technologies Used
 - HTML5
 - CSS3
